@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- FONT AWESOME CDN -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins&family=ZCOOL QingKe HuangYou"
+    />
+    <!-- GOOGLE FONT API -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- CUSTOM CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- TAILWIND CSS CDN LINK -->
+    <title>Phone Finder</title>
+  </head>
+  <body>
+    <header class="bg-slate-700 py-2 px-4">
+      <nav class="grid grid-cols-3 justify-center items-center">
+        <div class="logo col-span-1">
+          <span
+            class="text-slate-200 text-2xl font__lobster font-normal capitalize"
+            >Phone Finder</span
+          >
+        </div>
+        <div class="search-box col-span-2 text-right">
+          <input
+            class="w-3/4 border rounded h-8 px-2 text-lg"
+            type="text"
+            placeholder="search-phone"
+            id="search-input"
+          />
+          <button
+            id="search-button"
+            class="text-slate-800 font__zcool uppercase text-2xl h-full inline -ml-8"
+          >
+            <i
+              class="fa-solid fa-magnifying-glass relative top-1 text-slate-800"
+            ></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <script src="./js/phone-find.js"></script>
+  </body>
+</html>
