@@ -24,6 +24,7 @@ const getPhoneApi = async () => {
 };
 
 const displaySearchResult = (result) => {
+  //   const classAdd = ["grid", "grid-cols-2"];
   const phoneGridBox = document.getElementById("phone-grid-box");
   phoneGridBox.innerText = "";
   const firstTwentyItems = result.slice(0, 20);
@@ -58,17 +59,64 @@ const getDetailsById = async (slug) => {
   try {
     const request = await fetch(baseUrl);
     const data = await request.json();
-    console.log(data.data);
+    displaySinglePhoneDetails(data.data);
   } catch (err) {
     errMessage(err);
   }
+};
+
+const displaySinglePhoneDetails = (singleData) => {
+  const singlePhoneBox = document.getElementById("single-phone-box");
+  document.body.style.overflow = "hidden";
+  singlePhoneBox.textContent = "";
+  document.getElementById("display-single-phone-details").style.display =
+    "block";
+  // Destructure Object
+  const { storage, displaySize, chipSet, memory, sensors } =
+    singleData.mainFeatures;
+  const div = document.createElement("div");
+  div.innerHTML = `
+    <div class="text-right "><span class="text-red-700 text-2xl cursor-pointer font-bold" onclick='closeIt()' id="close-it">X</span></div>
+    <div class="flex justify-center mb-2 p-4">
+        <img src="${
+          singleData.image
+        }" class="rounded-lg p-2 drop-shadow-lg  bg-white border-8" alt="${
+    singleData.name
+  }" />
+    </div>
+    <div class="flex justify-start flex-col items-center gap-2 ">
+        <h2 class="bg-slate-600 px-3 font-semibold rounded-md">Brand: ${
+          singleData.brand
+        }</h2>
+        <h2>Name: ${singleData.name}</h2>
+            <h2>Release Date: ${
+              singleData.releaseDate ? singleData.releaseDate : "No Data Found"
+            }</h2>
+        <h2>chipSet: ${chipSet ? chipSet : "No Data"}</h2>
+        <h2>Storage: ${storage ? storage : "No Storage Found"}</h2>
+        <h2>Memory: ${memory}</h2>
+        <h2 class="text-center">Display Size: ${displaySize}</h2>
+        <h2 class="text-center">Sensors: ${sensors}</h2>
+    </div>
+
+  `;
+  singlePhoneBox.appendChild(div);
 };
 
 // Error Message
 const errMessage = (text) => {
   const errDiv = document.getElementById("err-msg");
   errDiv.innerHTML = `<h5 class="bg-red-500 text-slate-50 my-3 text-lg border rounded-lg w-4/5 uppercase">${text}</h5>`;
-  setInterval(() => {
+  setTimeout(() => {
     errDiv.innerText = "";
-  }, 3000);
+  }, 6000);
+};
+
+// ACTIVATE THE CLOSE BUTTON
+
+const closeIt = () => {
+  document.getElementById("display-single-phone-details").style.display =
+    "none";
+
+  document.body.style.overflow = "auto";
 };
