@@ -64,8 +64,6 @@ const getDetailsById = async (slug) => {
   }
 };
 
-getPhoneApi();
-
 // Error Message
 const errMessage = (text) => {
   const errDiv = document.getElementById("err-msg");
