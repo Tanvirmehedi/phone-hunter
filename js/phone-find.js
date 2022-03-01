@@ -8,10 +8,14 @@ const getPhoneApi = async () => {
   } else {
     const baseUrl = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
     try {
+      spinner("block");
+      toggleId("display-phone-search-by-name", "none");
       const request = await fetch(baseUrl);
       const phoneData = await request.json();
       if (phoneData.data.length === 0) {
-        errMessage(`No Data Found in <span class="text-yellow-500 font-bold"> ${inputValue}</span>! Please Try Another Search`);
+        errMessage(
+          `No Data Found in <span class="text-yellow-500 font-bold"> ${inputValue}</span>! Please Try Another Search`
+        );
       } else {
         displaySearchResult(phoneData.data);
       }
@@ -50,11 +54,16 @@ const displaySearchResult = (result) => {
         </div>
     `;
     phoneGridBox.appendChild(div);
+    // SPINNER FUNCTION
+    spinner("none");
+    toggleId("display-phone-search-by-name", "block");
   }
 };
 
 // Get Phone Details
 const getDetailsById = async (slug) => {
+  spinner("block");
+  toggleId("display-single-phone-details", "none");
   const baseUrl = `https://openapi.programming-hero.com/api/phone/${slug}`;
   try {
     const request = await fetch(baseUrl);
@@ -66,7 +75,6 @@ const getDetailsById = async (slug) => {
 };
 
 const displaySinglePhoneDetails = (singleData) => {
-
   const singlePhoneBox = document.getElementById("single-phone-box");
   document.body.style.overflow = "hidden";
   singlePhoneBox.textContent = "";
@@ -76,8 +84,8 @@ const displaySinglePhoneDetails = (singleData) => {
   const { storage, displaySize, chipSet, memory, sensors } =
     singleData.mainFeatures;
   const div = document.createElement("div");
-  div.classList.add('h-screen')
-  div.classList.add('overflow-y-auto')
+  div.classList.add("h-screen");
+  div.classList.add("overflow-y-auto");
   div.innerHTML = `
     <div class="text-right ">
       <span class="fixed -ml-8 z-50 text-red-700 text-2xl cursor-pointer font-bold" onclick='closeIt()' id="close-it">X</span>
@@ -106,6 +114,8 @@ const displaySinglePhoneDetails = (singleData) => {
 
   `;
   singlePhoneBox.appendChild(div);
+  spinner("none");
+  toggleId("display-single-phone-details", "block");
 };
 
 // Error Message
@@ -123,13 +133,13 @@ const closeIt = () => {
     "none";
   document.body.style.overflow = "auto";
 };
+// SPINNER TOGGLE
+const spinner = (toggleSpin) => {
+  document.getElementById("spinner-div").style.display = toggleSpin;
+};
 
-const spinner=(toggleSpin)=>{
-//   const div= document.createElement('div');
-//   div.style.display="none"
-//   div.innerText=`Loading...`;
-//   const main=document.getElementById('main');
-//   main.insertBefore(div,main.children[0])
-// div.style.display=toggleSpin;
-document.getElementById('spinner-div').style.display=toggleSpin;
-}
+// TOGGLE THE ID
+
+const toggleId = (id, toggleId) => {
+  document.getElementById(id).style.display = toggleId;
+};
