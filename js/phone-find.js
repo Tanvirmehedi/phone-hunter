@@ -118,10 +118,17 @@ const errMessage = (text) => {
 };
 
 // ACTIVATE THE CLOSE BUTTON
-
 const closeIt = () => {
   document.getElementById("display-single-phone-details").style.display =
     "none";
-
   document.body.style.overflow = "auto";
 };
+
+const spinner=()=>{
+  const div= document.createElement('div');
+  div.innerText=`Loading...`;
+  const main=document.getElementById('main');
+  main.insertBefore(div,main.children[0])
+
+}
+spinner()
