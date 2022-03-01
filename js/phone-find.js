@@ -31,17 +31,19 @@ const displaySearchResult = (result) => {
     const div = document.createElement("div");
     div.innerHTML = `
         <div class="flex justify-around items-center border-2 rounded-md mx-auto w-11/12">
-            <div class="images py-3">
-                <img src="${item.image}" alt="" />
+            <div class="images py-3 ">
+                <img src="${item.image}" alt="${item.phone_name}" class=" p-2 rounded-md" />
             </div>
 
             <div class="info-box self-start py-3 px-2">
-                <h2>
-                <span class="block">Product Name: </span>${item.phone_name}</h2>
-                <h2>
-                <span class="inline-block">Brand Name: </span> ${item.brand}</h2>
+                <h2 class="text-lg bg-slate-500 my-2 rounded-md px-2 font-semibold text-white">
+                   <span class="inline-block text-slate-900 font-bold">Product Name: </span> ${item.phone_name}
+                </h2>
+                <h2 class="text-lg bg-slate-500 my-2 rounded-md px-2 font-semibold text-white">
+                <span class="inline-block text-slate-900 font-bold">Brand Name: </span> ${item.brand}
+                </h2>
 
-                <button class="bg-slate-700 text-slate-100 font-bold px-3 py-1 rounded drop-shadow-md font__lobster" onclick="getDetailsById('${item.slug}')" >
+                <button class="bg-slate-700 text-slate-100 font-bold px-3 mt-10  py-1 rounded drop-shadow-md font__lobster" onclick="getDetailsById('${item.slug}')" >
                 Details
                 </button>
             </div>
@@ -87,7 +89,7 @@ const displaySinglePhoneDetails = (singleData) => {
     singleData.name
   }" />
     </div>
-    <div class="flex justify-start flex-col items-center gap-2 ">
+    <div class="flex justify-start flex-col items-center gap-2 text-lg pb-10 ">
         <h2 class="bg-slate-600 px-3 font-semibold rounded-md">Brand: ${
           singleData.brand
         }</h2>
