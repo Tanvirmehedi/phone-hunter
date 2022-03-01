@@ -2,17 +2,22 @@
 const getPhoneApi = async () => {
   const inputBox = document.getElementById("search-input");
   const inputValue = inputBox.value;
+
   if (inputValue === "") {
     errMessage("Give A valid Phone Name!");
     inputBox.value = "";
+    spinner("none");
+    toggleId("display-phone-search-by-name", "block");
   } else {
+    spinner("block");
+    toggleId("display-phone-search-by-name", "none");
     const baseUrl = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
     try {
-      spinner("block");
-      toggleId("display-phone-search-by-name", "none");
       const request = await fetch(baseUrl);
       const phoneData = await request.json();
       if (phoneData.data.length === 0) {
+        spinner("none");
+        toggleId("display-phone-search-by-name", "block");
         errMessage(
           `No Data Found in <span class="text-yellow-500 font-bold"> ${inputValue}</span>! Please Try Another Search`
         );
@@ -27,6 +32,7 @@ const getPhoneApi = async () => {
 };
 
 const displaySearchResult = (result) => {
+  toggleId("home-screen-part", "none");
   const phoneGridBox = document.getElementById("phone-grid-box");
   phoneGridBox.innerText = "";
   const firstTwentyItems = result.slice(0, 20);
@@ -78,8 +84,7 @@ const displaySinglePhoneDetails = (singleData) => {
   const singlePhoneBox = document.getElementById("single-phone-box");
   document.body.style.overflow = "hidden";
   singlePhoneBox.textContent = "";
-  document.getElementById("display-single-phone-details").style.display =
-    "block";
+  toggleId("display-single-phone-details", "block");
   // Destructure Object
   const { storage, displaySize, chipSet, memory, sensors } =
     singleData.mainFeatures;
@@ -123,19 +128,18 @@ const errMessage = (text) => {
   const errDiv = document.getElementById("err-msg");
   errDiv.innerHTML = `<h5 class="bg-red-500 text-slate-50 my-3 text-lg border rounded-lg w-4/5 uppercase">${text}</h5>`;
   setTimeout(() => {
-    errDiv.innerText = "";
+    errDiv.textContent = "";
   }, 6000);
 };
 
 // ACTIVATE THE CLOSE BUTTON
 const closeIt = () => {
-  document.getElementById("display-single-phone-details").style.display =
-    "none";
+  toggleId("display-single-phone-details", "none");
   document.body.style.overflow = "auto";
 };
 // SPINNER TOGGLE
 const spinner = (toggleSpin) => {
-  document.getElementById("spinner-div").style.display = toggleSpin;
+  toggleId("spinner-div", toggleSpin);
 };
 
 // TOGGLE THE ID
