@@ -1,5 +1,4 @@
 // Get Phone Api By search
-
 const getPhoneApi = async () => {
   const inputBox = document.getElementById("search-input");
   const inputValue = inputBox.value;
@@ -75,8 +74,12 @@ const displaySinglePhoneDetails = (singleData) => {
   const { storage, displaySize, chipSet, memory, sensors } =
     singleData.mainFeatures;
   const div = document.createElement("div");
+  div.classList.add('h-screen')
+  div.classList.add('overflow-y-auto')
   div.innerHTML = `
-    <div class="text-right "><span class="text-red-700 text-2xl cursor-pointer font-bold" onclick='closeIt()' id="close-it">X</span></div>
+    <div class="text-right ">
+      <span class="fixed -ml-8 z-50 text-red-700 text-2xl cursor-pointer font-bold" onclick='closeIt()' id="close-it">X</span>
+    </div>
     <div class="flex justify-center mb-2 p-4">
         <img src="${
           singleData.image

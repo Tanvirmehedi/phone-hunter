@@ -1,17 +1,17 @@
 .font__lobster {
-  font-family: "Lobster", cursive;
+  font-family: 'Lobster', cursive;
 }
 .font__poppins {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .font__zcool {
-  font-family: "ZCOOL QingKe HuangYou", cursive;
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
 body {
   scroll-behavior: smooth;
 }
 
-#single-phone-box {
-  min-height: 100vh;
+.h-95vh {
+  height: 80vh;
 }
