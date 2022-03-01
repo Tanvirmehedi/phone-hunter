@@ -23,7 +23,6 @@ const getPhoneApi = async () => {
 };
 
 const displaySearchResult = (result) => {
-  //   const classAdd = ["grid", "grid-cols-2"];
   const phoneGridBox = document.getElementById("phone-grid-box");
   phoneGridBox.innerText = "";
   const firstTwentyItems = result.slice(0, 20);
@@ -36,7 +35,7 @@ const displaySearchResult = (result) => {
             </div>
 
             <div class="info-box self-start py-3 px-2">
-                <h2 class="text-lg bg-slate-500 my-2 rounded-md px-2 font-semibold text-white">
+                <h2 class="text-lg bg-slate-500 my-2 rounded-md p-3 font-semibold text-white">
                    <span class="inline-block text-slate-900 font-bold">Product Name: </span> ${item.phone_name}
                 </h2>
                 <h2 class="text-lg bg-slate-500 my-2 rounded-md px-2 font-semibold text-white">
@@ -67,6 +66,7 @@ const getDetailsById = async (slug) => {
 };
 
 const displaySinglePhoneDetails = (singleData) => {
+
   const singlePhoneBox = document.getElementById("single-phone-box");
   document.body.style.overflow = "hidden";
   singlePhoneBox.textContent = "";
@@ -125,11 +125,11 @@ const closeIt = () => {
 };
 
 const spinner=(toggleSpin)=>{
-  const div= document.createElement('div');
-  div.style.display="none"
-  div.innerText=`Loading...`;
-  const main=document.getElementById('main');
-  main.insertBefore(div,main.children[0])
-div.style.display=toggleSpin;
+//   const div= document.createElement('div');
+//   div.style.display="none"
+//   div.innerText=`Loading...`;
+//   const main=document.getElementById('main');
+//   main.insertBefore(div,main.children[0])
+// div.style.display=toggleSpin;
+document.getElementById('spinner-div').style.display=toggleSpin;
 }
-spinner('none')
