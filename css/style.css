@@ -9,6 +9,7 @@
   font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
 body {
+  overflow-wrap: anywhere;
   scroll-behavior: smooth;
 }
 

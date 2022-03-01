@@ -11,7 +11,7 @@ const getPhoneApi = async () => {
       const request = await fetch(baseUrl);
       const phoneData = await request.json();
       if (phoneData.data.length === 0) {
-        errMessage(`No Data Found in ${inputValue} Please Try Another `);
+        errMessage(`No Data Found in <span class="text-yellow-500 font-bold"> ${inputValue}</span>! Please Try Another Search`);
       } else {
         displaySearchResult(phoneData.data);
       }
@@ -89,7 +89,7 @@ const displaySinglePhoneDetails = (singleData) => {
     singleData.name
   }" />
     </div>
-    <div class="flex justify-start flex-col items-center gap-2 text-lg pb-10 ">
+    <div class="flex justify-start flex-col items-center gap-2 text-lg pb-10 overflow-x-hidden">
         <h2 class="bg-slate-600 px-3 font-semibold rounded-md">Brand: ${
           singleData.brand
         }</h2>
