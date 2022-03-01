@@ -124,11 +124,12 @@ const closeIt = () => {
   document.body.style.overflow = "auto";
 };
 
-const spinner=()=>{
+const spinner=(toggleSpin)=>{
   const div= document.createElement('div');
+  div.style.display="none"
   div.innerText=`Loading...`;
   const main=document.getElementById('main');
   main.insertBefore(div,main.children[0])
-
+div.style.display=toggleSpin;
 }
-spinner()
+spinner('none')
